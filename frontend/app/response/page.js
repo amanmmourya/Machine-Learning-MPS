@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
 const Response = () => {
     const Router = useRouter();
+    const NEXT_BACKEND_URL=process.env.NEXT_PUBLIC.BACKEND_URL || 'http://localhost:8000';
     const [data, setData] = useState(null);
     const [possibleDisease, setPossibleDisease] = useState(null);
     const [recommendedPrescription, setRecommendedPrescription] = useState(null);
@@ -27,7 +28,7 @@ const Response = () => {
       // Wrap everything in an async function
       (async () => {
           const possibleDiseaseFunction = async () => {
-              const response = await fetch('http://localhost:8000/giveDisease', {
+              const response = await fetch(`${NEXT_BACKEND_URL}/giveDisease`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ selectedSymptoms })
@@ -38,7 +39,7 @@ const Response = () => {
           };
   
           const recommendedPrescriptionFunction = async (disease) => {
-              const response = await fetch('http://localhost:8000/givePrescription', {
+              const response = await fetch(`${NEXT_BACKEND_URL}/givePrescription`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ selectedSymptoms, userData, customDescription, severity, disease })
@@ -48,7 +49,7 @@ const Response = () => {
           };
   
           const suitableMedicines = async () => {
-              const response = await fetch('http://localhost:8000/suitableMedicines', {
+              const response = await fetch(`${NEXT_BACKEND_URL}/suitableMedicines`, {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
                   body: JSON.stringify({ selectedSymptoms,userData,customDescription,severity,disease })
