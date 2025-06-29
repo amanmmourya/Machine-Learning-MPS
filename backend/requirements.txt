@@ -10,5 +10,4 @@ pdfplumber==0.11.7
 python-dotenv==1.1.1
 uvicorn==0.34.3
 sentence-transformers==2.6.1
-torch==2.1.2+cpu
--f https://download.pytorch.org/whl/torch_stable.html
+torch==2.7.1
