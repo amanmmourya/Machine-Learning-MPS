@@ -27,7 +27,7 @@ const Response = () => {
   
       // Wrap everything in an async function
       (async () => {
-          const NEXT_BACKEND_URL=process.env.NEXT_PUBLIC.BACKEND_URL || 'http://localhost:8000';
+          const NEXT_BACKEND_URL=process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:8000';
           const possibleDiseaseFunction = async () => {
               const response = await fetch(`${NEXT_BACKEND_URL}/giveDisease`, {
                   method: 'POST',
