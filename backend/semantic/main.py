@@ -1,11 +1,12 @@
 import pdfplumber
 from langchain_community.document_loaders import TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = ""
 from sentence_transformers import SentenceTransformer
 import faiss
 import joblib
 import numpy as np
-import os
 def pdf_to_text(path, output_file):
     text = ""
     with pdfplumber.open(path) as pdf:
