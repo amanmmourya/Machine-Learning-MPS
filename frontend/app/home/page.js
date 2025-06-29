@@ -29,7 +29,7 @@ export default function Home() {
                 </h1>
                 <p className="text-xl leading-8 text-gray-600 max-w-2xl">
                   Experience the future of healthcare with AI-powered prescription generation. 
-                  Fast, secure, and reliable medical services delivered right to your fingertips.
+                  Fast, secure, and reliable medical services given right to your fingertips.
                 </p>
               </div>
               
