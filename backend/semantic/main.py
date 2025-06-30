@@ -47,9 +47,9 @@ def search_similar_documents(index, query_text, documents, top_k=2):
     return results
 
 def mainFunction(query):
-    embeddings,chunk_texts=joblib.load(os.path.join(os.path.dirname(__file__), "embedding_data.joblib"))
+    embeddings,chunk_texts=joblib.load("./semantic/embedding_data.joblib")
     print("embeddings generated")
-    index = faiss.read_index(os.path.join(os.path.dirname(__file__), "faiss_index.bin"))
+    index = faiss.read_index("./semantic/faiss_index.bin")
     print("index loaded")
     results = search_similar_documents(index, query, chunk_texts)
     final_results=[]

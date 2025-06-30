@@ -47,8 +47,8 @@ def search_similar_documents(index, query_text, documents, top_k=2):
     return results
 
 def mainFunctionForMedicine(query):
-    embeddings,chunk_texts=joblib.load(os.path.join(os.path.dirname(__file__), "embedding_data_medicine.joblib"))
-    index=faiss.read_index(os.path.join(os.path.dirname(__file__), "faiss_index_medicine.bin"))
+    embeddings,chunk_texts=joblib.load("./semantic/embedding_data_medicine.joblib")
+    index=faiss.read_index("./semantic/faiss_index_medicine.bin")
     results=search_similar_documents(index,query,chunk_texts)
     final_results=[]
     for doc in results:

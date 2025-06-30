@@ -110,7 +110,7 @@ all_col=['anxiety and nervousness',
  'skin dryness, peeling, scaliness, or roughness',
  'skin rash','diseases']
 
-rf_model=load('rf_model.joblib')
+rf_model=load('./mlModel/rf_model.joblib')
 
 @app.post("/giveDisease")
 async def giveDisease(request:Request):
