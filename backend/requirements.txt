@@ -8,3 +8,4 @@ pandas==2.3.0
 python-dotenv==1.1.1
 uvicorn==0.34.3
 langchain-google-genai
+scikit-learn
