@@ -6,9 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import sys
 import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..', 'semantic'))
-from main import mainFunction
 from gemini import process_with_context
-from medicine import mainFunctionForMedicine
 app=FastAPI()
 app.add_middleware(
     CORSMiddleware,
@@ -128,7 +126,7 @@ async def givePrescription(request:Request):
     response=await request.json()
     print(response)
     query=f"How to treat {response['disease']} in {response['userData']['gender']} suffering with {response['selectedSymptoms']} and {response['customDescription']} and {response['severity']} and give response in 100 words only."
-    results=mainFunction(query)
+    results=f"The disease is {response['disease']} and the symptoms are {response['selectedSymptoms']} and the custom description is {response['customDescription']} and the severity is {response['severity']}"
     context=f"Generate a structured response for the following results in 100 words only: {results}"
     data=process_with_context(context,query)
     return {"prescription":data}
@@ -137,8 +135,8 @@ async def giveSuitableMedicines(request:Request):
     response=await request.json()
     print(response)
     query=f"Give three-four suitable medicines only for {response['disease']}"
-    results=mainFunctionForMedicine(query)
+    results=f"The disease is {response['disease']} and the symptoms are {response['selectedSymptoms']} and the custom description is {response['customDescription']} and the severity is {response['severity']}"
     context=f"Generate a list of only three-four medicines for the following results.Nothing extra: {results}"
-    queryForLLM=f"Give suitable medicines for {response['disease']} in {response['userData']['gender']} suffering with {response['selectedSymptoms']} and {response['customDescription']} and {response['severity']} and give only medicines name.Nothing extra."
+    queryForLLM=f"Give three-four suitable medicines for {response['disease']} in {response['userData']['gender']} suffering with {response['selectedSymptoms']} and {response['customDescription']} and {response['severity']} and give only medicines name.Nothing extra."
     data=process_with_context(context,queryForLLM)
     return {"medicines":data}
